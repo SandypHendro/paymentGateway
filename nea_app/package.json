@@ -1,0 +1,19 @@
+{
+  "name": "nea_app",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev-start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nea",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^1.10.2",
+    "pg": "^6.1.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.24.1"
+  }
+}

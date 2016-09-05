@@ -1,0 +1,7 @@
+.idea
+
+# node package
+*/**/node_modules
+
+#database_configuration
+*/**/config.json
