@@ -22,6 +22,17 @@ app.get('/customers',function (req,res) {
         })
 });
 
+app.get('/customers/:id',function (req,res) {
+    var id = req.params.id;
+    models.Customer.findById(id)
+        .then(function (customer) {
+            res.json({customer:customer})
+        })
+        .catch(function (err) {
+            res.json({error:err});
+        })
+});
+
 app.listen(port ,function () {
     console.log("server running at port" + port);
 });
