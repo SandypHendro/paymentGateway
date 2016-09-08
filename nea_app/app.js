@@ -1,36 +1,25 @@
 "use strict";
 
+var bodyParser = require('body-parser');
 var express = require("express");
+var fs = require("fs");
+var path = require("path");
+
 var app     = express();
+var port = 8000;
 
 
-var port = 5000;
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
-var models = require('./models/index');
 
 app.get('/',function (req,res) {
     res.json({message:"hello world"});
 });
 
-app.get('/customers',function (req,res) {
-    models.Customer.findAll()
-        .then(function (customers) {
-            res.json({customer:customers})
-        })
-        .catch(function (err) {
-            res.json({error:err});
-        })
-});
-
-app.get('/customers/:id',function (req,res) {
-    var id = req.params.id;
-    models.Customer.findById(id)
-        .then(function (customer) {
-            res.json({customer:customer})
-        })
-        .catch(function (err) {
-            res.json({error:err});
-        })
+var routersPath = path.join (__dirname, "routes");
+fs.readdirSync(routersPath).forEach(function (file) {
+    app.use(require("./routes/" + file));
 });
 
 app.listen(port ,function () {
