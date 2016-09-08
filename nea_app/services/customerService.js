@@ -15,7 +15,7 @@ var customerListing = function () {
 
 var customerRetrive = function (id) {
     return new Promise(function (resolve, reject) {
-        models.Customer.findById(id)
+        models.Customer.findAll(id)
             .then(function (customers) {
                 resolve(customers);
             })
@@ -25,26 +25,11 @@ var customerRetrive = function (id) {
     });
 };
 
-var customerCreate = function (customerParam) {
+var customerCreate = function () {
     return new Promise(function (resolve, reject) {
-        models.Customer.create(customerParam)
+        models.Customer.findAll()
             .then(function (customers) {
                 resolve(customers);
-            })
-            .catch(function (err) {
-                reject(err);
-            })
-    });
-};
-
-var customerUpdate = function (id) {
-    return new Promise(function (resolve, reject) {
-        models.Customer.findById(id)
-            .then(function (customer) {
-                customer.updateAttributes(customerParams)
-                    .then(function (updateCustomer) {
-                        resolve(customers = updateCustomer);
-                    })
             })
             .catch(function (err) {
                 reject(err);
